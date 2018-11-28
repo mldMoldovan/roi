@@ -295,7 +295,7 @@ if [ "$1" == "-v" ]; then
  # VERSION MENU -V FLAG
 
  printf "Kolya - React Native to CSS converter\n"
- printf "            Version  0.2.0                 \n"
+ printf "            Version  0.2.6                 \n"
 
 elif [[ "$1" == "-h" ]]; then
 
