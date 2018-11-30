@@ -4,7 +4,7 @@ Kolya - React Native to CSS converter
 
 Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]
 
-Options: -v - Show version info
+Options: -v - Show version info\n
          -h - Show help menu
          -o - Open file 
          -css | -react - Setup output syntax
