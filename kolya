@@ -5,7 +5,7 @@ _launch=false
 _help(){
 
  printf "\n"
- printf "Kolya - React Native to CSS converter\n"
+ printf "Kolya - React Wizard\n"
  printf "\n"
  printf "Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]\n"
  printf "\n"
@@ -32,7 +32,6 @@ _miniHelp(){
  printf "         -h - Show help menu\n"
  printf "         -o - Open file \n"
  printf "         -css | -react - Setup output syntax\n"
- printf "         -d - Detect file syntax\n"
  printf "         -e - Update file extension\n"
  printf "         -k - Keep old file\n"
  printf "\n"
@@ -58,7 +57,7 @@ _react(){
       sed -i -e 's/position: sticky/position: absolute/g' $1
       sed -i -e 's/position: initial/position: absolute/g' $1
       sed -i -e 's/position: inherit/position: absolute/g' $1
-      
+
       # display
 
       sed -i -e 's/display: block/display: flex/g' $1
@@ -177,10 +176,23 @@ _css(){
 }
 
 
+_jsx(){
+     sed -i -e 's/div/View/g' $1
+     sed -i -e 's/span/Text/g' $1
+     rm $1-e
+}
+
+_rjs(){
+    sed -i -e 's/View/div/g' $1
+    sed -i -e 's/Text/span/g' $1
+    rm $1-e
+}
+
+
 _cleanReact(){
 
-      if [ "$2" == "-o" ]; then 
-              
+      if [ "$2" == "-o" ]; then
+
               rm temp.slz
               cat $1
 
@@ -215,7 +227,7 @@ _cleanReact(){
 
 _cleanCss(){
 
-         if [ "$2" == "-o" ]; then 
+         if [ "$2" == "-o" ]; then
 
             rm temp.slz
             cat $1
@@ -253,7 +265,7 @@ _cleanCss(){
 _checkValidOptions(){
 
 
-         if [ "$1" == "-o" ]; then 
+         if [ "$1" == "-o" ]; then
 
             _launch=true
 
@@ -283,9 +295,28 @@ _checkValidOptions(){
 
 _noOptions(){
 
-        printf "\n"
+  printf "\n"
 	printf "No valid option used - Try Again\n"
 	_miniHelp
+
+}
+
+
+_version(){
+
+  printf "\n"
+  printf "         Kolya - React Wizard\n"
+  printf "            Version  0.2.1                 \n"
+  printf "\n"
+
+}
+
+_noArg(){
+
+  printf "\n"
+  printf "No arguments specified"
+  printf "\n"
+  _miniHelp
 
 }
 
@@ -293,9 +324,8 @@ _noOptions(){
 if [ "$1" == "-v" ]; then
 
  # VERSION MENU -V FLAG
+   _version
 
- printf "Kolya - React Native to CSS converter\n"
- printf "            Version  0.2.6                 \n"
 
 elif [[ "$1" == "-h" ]]; then
 
@@ -309,6 +339,14 @@ elif [[ "$1" == "--update" ]]; then
 elif [[ "$1" == "--install" ]]; then
 
    _update
+
+elif [[ "$1" == "--upgrade" ]]; then
+
+  _update
+
+elif [[ "$1" == "--reinstall" ]]; then
+
+  _update
 
 elif [[ "$1" == "-help" ]]; then
 
@@ -324,7 +362,7 @@ else
 
    	if [ "$_launch" == true ]; then
 
-            _react $1      
+            _react $1
 
             _cleanReact $1 $3
 
@@ -336,17 +374,15 @@ else
 
    	    if [ "$_launch" == true ]; then
 
-            _css $1    
+            _css $1
 
             _cleanCss $1 $3
-            
+
             fi
 
    else
 
-      printf "Conversion flag not present.\nChoose either -react or -css and try again.\n"
-      printf "\n" 
-      _miniHelp
-      
+   _noArg
+
    fi
 fi
