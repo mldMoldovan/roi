@@ -1,6 +1,6 @@
-# kolya - 0.2.6
+# kolya - 0.2.2
 
-Kolya - React Native to CSS converter
+Kolya - React Wizard
 
 Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]
 
