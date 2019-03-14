@@ -1,6 +1,6 @@
 # kolya - 0.2.2
 
-Kolya - React Wizard
+Kolya - React Daemon
 
 Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]
 
