@@ -312,7 +312,7 @@ _version(){
 
   printf "\n"
   printf "         Kolya - React Wizard\n"
-  printf "            Version  0.2.2                 \n"
+  printf "            Version  0.2.3                 \n"
   printf "\n"
 
 }
@@ -323,6 +323,38 @@ _noArg(){
   printf "No arguments specified"
   printf "\n"
   _miniHelp
+
+}
+
+
+_checkOS(){
+
+  _system="$(uname -s)"
+
+  if [ "$_system" == "Darwin" ]; then
+    printf "Wonderful, a Macintosh, the best virtual environment\n"
+    printf "Preparing to inject dependencies...\n"
+     _unload
+  elif [[ "$_system" == "Linux" ]]; then
+     printf "React Native development is not supported on Linux\n"
+  elif [[ "$_system" == "Haiku" ]]; then
+     printf "React Native development is not supported on Haiku\n"
+  elif [[ "$_system" == "BSD" ]]; then
+     printf "React Native development is not supported on BSD\n"
+  elif [[ "$_system" == "Minix" ]]; then
+     printf "React Native development is not supported on Minix\n"
+  else
+     printf "React Native development is not supported on WTF is this Windows?\n"
+  fi
+
+}
+
+_unload(){
+
+  brew install node
+  brew install npm
+  brew install react-native-cli
+  brew cask install reactotron
 
 }
 
@@ -361,6 +393,14 @@ elif [[ "$1" == "--reinstall" ]]; then
 elif [[ "$1" == "-help" ]]; then
 
    _help
+
+elif [[ "$1" == "-unload" ]]; then
+
+   _checkOS
+
+elif [[ "$1" == "--unload" ]]; then
+
+   _checkOS
 
 else
 
