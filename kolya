@@ -1,11 +1,27 @@
 #!/bin/bash
 
 _launch=false
+_version="0.2.3"
+_name="Kolya"
+_desc="React Wizard"
+
+
+
+
+RED='\e[1;91m'
+GREEN='\e[1;92m'
+BLUE='\e[1;96m'
+YELLOW='\e[1;93m'
+NC='\033[0m'
+WHITE='\e[1;97m'
+
+
+
 
 _help(){
 
  printf "\n"
- printf "Kolya - React Wizard\n"
+ printf "$_name - $_desc\n"
  printf "\n"
  printf "Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]\n"
  printf "\n"
@@ -16,6 +32,7 @@ _help(){
  printf "         -d - Detect file syntax\n"
  printf "         -e - Update file extension\n"
  printf "         -k - Keep old file\n"
+ printf "         -inject - Inject React Dependencies\n"
  printf "\n"
  printf "Examples: kolya style.js -css -o\n"
  printf "          kolya style.css -react -oek\n"
@@ -40,12 +57,19 @@ _miniHelp(){
 
 _update(){
 
-    sudo chmod +x kolya
-    sudo cp kolya /usr/local/bin/
+    sudo sysctl -w kern.maxfiles=5242880
+    sudo sysctl -w kern.maxfilesperproc=524288
+
 
 
 }
 
+_install(){
+
+   sudo chmod +x kolya
+   sudo cp kolya /usr/local/bin/
+   printf "$RED __installed!$NC \n"
+}
 
 _react(){
       cp $1 temp.slz
@@ -311,8 +335,8 @@ _noOptions(){
 _version(){
 
   printf "\n"
-  printf "         Kolya - React Wizard\n"
-  printf "            Version  0.2.3                 \n"
+  printf "         $_name - $_desc\n"
+  printf "            Version  $_version                 \n"
   printf "\n"
 
 }
@@ -355,6 +379,10 @@ _unload(){
   brew install npm
   brew install react-native-cli
   brew cask install reactotron
+  brew cask install webstorm
+  clear
+  printf "$RED Kolya has been successfully injected into your system$NC\n"
+  printf " You can start developing your app right away\n"
 
 }
 
@@ -380,7 +408,7 @@ elif [[ "$1" == "--update" ]]; then
 
 elif [[ "$1" == "--install" ]]; then
 
-   _update
+   _install
 
 elif [[ "$1" == "--upgrade" ]]; then
 
@@ -388,17 +416,17 @@ elif [[ "$1" == "--upgrade" ]]; then
 
 elif [[ "$1" == "--reinstall" ]]; then
 
-  _update
+  _install
 
 elif [[ "$1" == "-help" ]]; then
 
    _help
 
-elif [[ "$1" == "-unload" ]]; then
+elif [[ "$1" == "-inject" ]]; then
 
    _checkOS
 
-elif [[ "$1" == "--unload" ]]; then
+elif [[ "$1" == "--inject" ]]; then
 
    _checkOS
 

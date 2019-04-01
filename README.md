@@ -1,6 +1,6 @@
-# kolya - 0.2.2
+# kolya - 0.2.3
 
-Kolya - React Daemon
+Kolya - React Wizard
 
 Usage:  kolya [-vh] <filepath> [-css | -react] [-oek]
 
@@ -11,6 +11,7 @@ Options: -v - Show version info\n
          -d - Detect file syntax
          -e - Update file extension
          -k - Keep old file
+         -inject - Inject React dependencies
 
 Examples: kolya style.js -css -o
           kolya style.css -react -oek
