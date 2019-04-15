@@ -1,7 +1,7 @@
 #!/bin/bash
 
 _launch=false
-_version="0.2.3"
+_version="0.2.4"
 _name="Kolya"
 _desc="React Wizard"
 
@@ -376,7 +376,6 @@ _checkOS(){
 _unload(){
 
   brew install node
-  brew install npm
   brew install react-native-cli
   brew cask install reactotron
   brew cask install webstorm
