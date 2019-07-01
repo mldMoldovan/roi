@@ -360,6 +360,28 @@ _noArg(){
 
 }
 
+_update(){
+
+  mkdir foornal
+  cd foornal
+  git clone https://github.com/mldMoldovan/roi.git -q >/dev/null
+  cd roi
+  sudo chmod +x roi
+  sudo cp roi /usr/local/bin
+  cd .. ; cd ..
+  sudo rm -rf foornal
+  printf "$RED _updated$NC\n"
+
+}
+
+_uninstall(){
+
+  sudo cd /usr/local/bin/
+  sudo chmod -x roi
+  sudo rm -rf roi
+
+}
+
 
 _checkOS(){
 
@@ -424,6 +446,22 @@ elif [[ "$1" == "--install" ]]; then
 elif [[ "$1" == "-install" ]]; then
 
     _install
+
+elif [[ "$1" == "-update" ]]; then
+
+    _update
+
+elif [[ "$1" == "--update" ]]; then
+
+    _update
+
+elif [[ "$1" == "-uninstall" ]]; then
+
+    _uninstall
+
+elif [[ "$1" == "--uninstall" ]]; then
+
+    _uninstall
 
 elif [[ "$1" == "--upgrade" ]]; then
 
