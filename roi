@@ -376,9 +376,8 @@ _update(){
 
 _uninstall(){
 
-  sudo cd /usr/local/bin/
-  sudo chmod -x roi
-  sudo rm -rf roi
+  sudo chmod -x /usr/local/bin/roi
+  sudo rm -rf /usr/local/bin/roi
 
 }
 
